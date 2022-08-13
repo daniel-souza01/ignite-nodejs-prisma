@@ -4,12 +4,15 @@ const prisma = new PrismaClient();
 
 async function main() {
   const result = await prisma.courses.findMany({
-    include: {
-      modules: true,
+    where: {
+      name: {
+        startsWith: "curso",
+        mode: "insensitive",
+      },
     },
   });
 
-  console.log(JSON.stringify(result));
+  console.log(result);
 }
 
 main();
